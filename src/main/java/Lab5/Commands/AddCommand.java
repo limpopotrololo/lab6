@@ -2,22 +2,26 @@ package Lab5.Commands;
 
 import Lab5.Data.SpaceMarine;
 import Lab5.Exeptions.*;
-
 import Lab5.Utility.*;
-
 import java.util.Date;
 
+/**
+ * "add" command, add SpaceMarine instance in collection
+ */
 public class AddCommand extends Command {
     CollectionManager collectionManager;
     IOManager ioManager;
-
 
     public AddCommand(CollectionManager collectionManager, IOManager ioManager) {
         this.collectionManager = collectionManager;
         this.ioManager = ioManager;
     }
 
-
+    /**
+     * execute command
+     * @param collectionManager
+     * @param ioManager
+     */
     @Override
     public void run(ArgumentLoader arguments) throws EmptyElement, IncorrectData {
         try {

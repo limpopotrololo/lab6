@@ -3,6 +3,9 @@ package Lab5.Utility;
 import Lab5.Commands.Command;
 import Lab5.Exeptions.*;
 
+/**
+ * Class for separating input and pick approach command
+ */
 
 public class ConsoleManager {
     CommandPool commandPool;
@@ -23,6 +26,7 @@ public class ConsoleManager {
             SpaceMarineArgumentLoader argumentLoader = new SpaceMarineArgumentLoader(arguments, ioManager);
             curCommand.run(argumentLoader);
         } catch (IllegalArgumentException e) {
+            e.printStackTrace();
             ioManager.printerr("Команда не найдена, воспользуйтесь командой \"help\" ");
         }
 

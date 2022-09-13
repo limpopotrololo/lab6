@@ -1,5 +1,8 @@
 package Lab5.Data;
 
+/**
+ * MeleeWeapon constant
+ */
 public enum MeleeWeapon {
     CHAIN_SWORD,
     POWER_SWORD,
@@ -7,6 +10,10 @@ public enum MeleeWeapon {
     POWER_BLADE,
     POWER_FIST;
 
+    /**
+     *
+     * @return list of constant
+     */
     public static String Listing() {
         String list = "";
         for (MeleeWeapon item : values()) {

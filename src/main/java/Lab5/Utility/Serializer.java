@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Stack;
 
 import Lab5.Data.SpaceMarine;
@@ -12,6 +11,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Class serialize and deserialize instances
+ */
 public class Serializer {
     private final IOManager ioManager;
 
@@ -23,16 +25,28 @@ public class Serializer {
         this.file = file;
     }
 
-
+    /**
+     * Deserializer collection from file
+     *
+     * @return collection
+     * @throws IOException
+     */
     public Stack<SpaceMarine> collectionDeserializer() throws IOException {
         String input = ioManager.readFile(file);
         if (input.equals(null))
             return null;
         else
 
-            return mapper.readValue(input, new TypeReference<Stack<SpaceMarine>>(){});
+            return mapper.readValue(input, new TypeReference<Stack<SpaceMarine>>() {
+            });
     }
 
+    /**
+     * Serialize collection for saving in file
+     *
+     * @param collection
+     * @throws JsonProcessingException
+     */
     public void collectionSerializer(Stack<SpaceMarine> collection) throws JsonProcessingException {
         if (collection.isEmpty()) {
             ioManager.println("Коллекция пуста");
@@ -45,7 +59,6 @@ public class Serializer {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
 }

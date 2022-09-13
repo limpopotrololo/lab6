@@ -1,11 +1,18 @@
 package Lab5.Data;
 
+/**
+ * Enumeration with marine category constants.
+ */
+
 public enum AstartesCategory {
     DREADNOUGHT,
     ASSAULT,
     TACTICAL;
 
-
+    /**
+     *
+     * @return list of constant
+     */
     public static String Listing() {
         String list = "";
         for (AstartesCategory item : values()) {

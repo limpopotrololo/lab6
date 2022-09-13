@@ -5,9 +5,11 @@ import Lab5.Utility.ArgumentLoader;
 import Lab5.Utility.CollectionManager;
 import Lab5.Utility.IOManager;
 import Lab5.Exeptions.*;
-
 import java.time.format.DateTimeFormatter;
 
+/**
+ * "info" command, print info about command
+ */
 public class InfoCommand extends Command {
 
     private final CollectionManager collectionManager;
@@ -28,6 +30,11 @@ public class InfoCommand extends Command {
         return "Вывод информации о коллекции";
     }
 
+    /**
+     * execute command
+     * @param arguments
+     * @throws IncorrectData
+     */
     @Override
     public void run(ArgumentLoader arguments) throws IncorrectData {
         try {

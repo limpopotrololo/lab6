@@ -24,7 +24,7 @@ public class RemoveByIdCommand extends Command {
             else
                 ioManager.println("Объекта с id = " + id + " не существует");
 
-        } catch (NumberFormatException ex) {
+        } catch (IllegalArgumentException ex) {
             ioManager.println("Аргумент команды не соответствует требованиям");
 
         }

@@ -2,6 +2,9 @@ package Lab5.Data;
 
 import Lab5.Exeptions.*;
 
+/**
+ * Chapter with marines
+ */
 public class Chapter {
     private String name; //field can't be null
     private String parentLegion;
@@ -12,6 +15,11 @@ public class Chapter {
     }
     public Chapter(){}
 
+    /**
+     * set name
+     * @param name
+     * @throws IncorrectData
+     */
     private void setName(String name) throws IncorrectData {
         if ((name == null) || (name.trim().equals(""))) {
             throw new IncorrectData();
@@ -19,6 +27,10 @@ public class Chapter {
         this.name = name;
     }
 
+    /**
+     * set parent legion
+     * @param parentLegion
+     */
     private void setParentLegion(String parentLegion) {
         this.parentLegion = parentLegion;
     }
@@ -29,10 +41,16 @@ public class Chapter {
                 "Parent Legion = " + parentLegion + "\n";
     }
 
+    /**
+     * @return parent legion
+     */
     public String getParentLegion() {
         return parentLegion;
     }
 
+    /**
+     * @return name
+     */
     public String getName() {
         return name;
     }

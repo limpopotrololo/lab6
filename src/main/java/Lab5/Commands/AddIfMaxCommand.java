@@ -7,6 +7,9 @@ import Lab5.Utility.CollectionManager;
 import Lab5.Utility.IOManager;
 import Lab5.Utility.SpaceMarineArgumentLoader;
 
+/**
+ * "add_if_max" command, add item in collection if item bigger than max element in collection
+ */
 public class AddIfMaxCommand extends Command {
     CollectionManager collectionManager;
     IOManager ioManager;
@@ -16,6 +19,12 @@ public class AddIfMaxCommand extends Command {
         this.ioManager = ioManager;
     }
 
+    /**
+     * execute command
+     * @param arguments
+     * @throws IncorrectData
+     * @throws EmptyElement
+     */
     @Override
     public void run(ArgumentLoader arguments) throws IncorrectData, EmptyElement {
         try {

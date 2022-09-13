@@ -5,7 +5,9 @@ import java.util.*;
 import Lab5.Data.*;
 import Lab5.Exeptions.*;
 
-
+/**
+ * Build spacemarine objects
+ */
 public class SpaceMarineBuilder {
 
 
@@ -16,7 +18,11 @@ public class SpaceMarineBuilder {
         this.ioManager = ioManager;
     }
 
-    SpaceMarineBuilder setName() throws IncorrectData {
+    /**
+     * Set name
+     * @throws IncorrectData
+     */
+    public SpaceMarineBuilder setName() throws IncorrectData {
         String name;
         ioManager.println("Введите имя");
         name = new Scanner(System.in).nextLine();
@@ -24,6 +30,11 @@ public class SpaceMarineBuilder {
         return this;
     }
 
+    /**
+     * Set Coordinates
+     * @throws EmptyElement
+     * @throws IncorrectData
+     */
     public SpaceMarineBuilder setCoordinates() throws EmptyElement, IncorrectData {
         Coordinates coordinates;
         ioManager.println("Введите координаты");
@@ -32,6 +43,11 @@ public class SpaceMarineBuilder {
         return this;
     }
 
+    /**
+     * Enter x
+     * @return x
+     * @throws EmptyElement
+     */
     private Integer enterX() throws EmptyElement {
         Integer x = null;
         String input;
@@ -48,6 +64,11 @@ public class SpaceMarineBuilder {
 
     }
 
+    /**
+     * Enter y
+     * @return y
+     * @throws EmptyElement
+     */
     private Integer enterY() throws EmptyElement {
         Integer y = null;
         String input;
@@ -64,6 +85,11 @@ public class SpaceMarineBuilder {
 
     }
 
+    /**
+     * Set health
+     * @throws EmptyElement
+     * @throws IncorrectData
+     */
     public SpaceMarineBuilder setHealth() throws EmptyElement, IncorrectData {
         String input;
         double health;
@@ -81,6 +107,11 @@ public class SpaceMarineBuilder {
 
     }
 
+    /**
+     * set Achievements
+     * @throws EmptyElement
+     * @throws IncorrectData
+     */
     public SpaceMarineBuilder setAchievements() throws EmptyElement, IncorrectData {
 
         String achievements;
@@ -96,6 +127,11 @@ public class SpaceMarineBuilder {
         }
     }
 
+    /**
+     * set Category
+     * @throws EmptyElement
+     * @throws IncorrectData
+     */
     public SpaceMarineBuilder setCategory() throws EmptyElement, IncorrectData {
         AstartesCategory category;
         String input;
@@ -114,6 +150,10 @@ public class SpaceMarineBuilder {
 
     }
 
+    /**
+     * set MeleeWeapon
+     * @throws IncorrectData
+     */
     public SpaceMarineBuilder setMeleeWeapon() throws IncorrectData {
         MeleeWeapon meleeWeapon;
         String input;
@@ -131,6 +171,10 @@ public class SpaceMarineBuilder {
         }
     }
 
+    /**
+     * set Chapter
+     * @throws IncorrectData
+     */
     public SpaceMarineBuilder setChapter() throws IncorrectData {
         Chapter chapter;
 
@@ -140,6 +184,10 @@ public class SpaceMarineBuilder {
         return this;
     }
 
+    /**
+     * set Chapter name
+     * @return
+     */
     private String setChapterName() {
         String input;
         try {
@@ -153,6 +201,9 @@ public class SpaceMarineBuilder {
         }
     }
 
+    /**
+     * set ParentLegion
+     */
     private String setChapterParentLegion() {
         String input;
         try {
@@ -166,6 +217,10 @@ public class SpaceMarineBuilder {
         }
     }
 
+    /**
+     * Build object
+     * @return spaceMarine instance
+     */
     public SpaceMarine build() {
         return MarineItem;
     }

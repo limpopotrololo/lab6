@@ -1,5 +1,7 @@
 package Lab5.Utility;
 
+import java.util.Objects;
+
 public class ArgumentLoader {
     private final String[] arguments;
 
@@ -9,7 +11,7 @@ public class ArgumentLoader {
 
     public void validateCount(int count) {
 
-        if (arguments.length != count)
+        if (!Objects.equals(arguments.length, count))
             throw new IllegalArgumentException();
 
     }

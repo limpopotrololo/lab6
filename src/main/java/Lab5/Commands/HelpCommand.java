@@ -4,10 +4,12 @@ import Lab5.Exeptions.*;
 import Lab5.Utility.ArgumentLoader;
 import Lab5.Utility.CommandPool;
 import Lab5.Utility.IOManager;
-
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * "help" command, print list of available command and description
+ */
 public class HelpCommand extends Command {
     private CommandPool commands;
     private final IOManager ioManager;
@@ -17,7 +19,12 @@ public class HelpCommand extends Command {
         this.ioManager = ioManager;
     }
 
-
+    /**
+     * execute command
+     * @param arguments
+     * @throws EmptyElement
+     * @throws IncorrectData
+     */
     @Override
     public void run(ArgumentLoader arguments) throws EmptyElement, IncorrectData {
         try {

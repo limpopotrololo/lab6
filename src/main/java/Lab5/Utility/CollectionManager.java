@@ -8,6 +8,9 @@ import Lab5.Exeptions.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * Class for work with collection
+ */
 public class CollectionManager {
 
     private static Stack<SpaceMarine> collection;
@@ -22,19 +25,31 @@ public class CollectionManager {
         id = new TreeSet<>();
     }
 
-    public CollectionManager(Stack<SpaceMarine> collection)  {
+    public CollectionManager(Stack<SpaceMarine> collection) {
         this.collection = collection;
         localDateTime = LocalDateTime.now();
         id = new TreeSet<>();
     }
 
+    /**
+     * Load collection
+     *
+     * @param collection
+     */
+
     public void loadCollection(Stack<SpaceMarine> collection) {
         this.collection = collection;
     }
 
+    /**
+     * Add collection instance to collection
+     *
+     * @param spaceMarine
+     * @throws IncorrectData
+     */
 
     public void addMarine(SpaceMarine spaceMarine) throws IncorrectData {
-        if (Objects.equals(spaceMarine.getId(),null)) {
+        if (Objects.equals(spaceMarine.getId(), null)) {
             if (id.isEmpty()) {
                 spaceMarine.setId(1L);
                 id.add(1l);
@@ -49,26 +64,46 @@ public class CollectionManager {
             id.add(spaceMarine.getId());
         }
         collection.push(spaceMarine);
-
+        sortCollection();
     }
 
+    /**
+     * @return localDataTime
+     */
     public LocalDateTime getLocalDateTime() {
         return localDateTime;
     }
 
+    /**
+     * @return Sorted collection
+     */
     private Stack<SpaceMarine> sortCollection() {
         Collections.sort(collection);
         return collection;
     }
 
+    /**
+     * Return collection size
+     *
+     * @return Integer
+     */
     public Integer getSize() {
         return collection.size();
     }
 
+    /**
+     * @return collection
+     */
     public Stack<SpaceMarine> getCollection() {
         return collection;
     }
 
+    /**
+     * Add candidate to collection if it is bigger than max element in collection
+     *
+     * @param candidate
+     * @throws IncorrectData
+     */
     public boolean AllowAddIfMax(SpaceMarine candidate) throws IncorrectData {
         if (collection.isEmpty()) {
             addMarine(candidate);
@@ -82,6 +117,10 @@ public class CollectionManager {
 
     }
 
+    /**
+     * Calculation average health point in collection
+     * return double
+     */
     public double getAverageHealth() {
         double sum = 0;
         if (collection.isEmpty())
@@ -93,11 +132,19 @@ public class CollectionManager {
         return sum / collection.size();
     }
 
+    /**
+     * Clear whole collection
+     */
     public void clearCollection() {
         id.clear();
         collection.clear();
     }
 
+    /**
+     * Delete element with the give id
+     * @param id
+     *
+     */
     public boolean deleteElementById(Long id) {
 
         Iterator<SpaceMarine> iterator = collection.iterator();
@@ -112,6 +159,10 @@ public class CollectionManager {
         return false;
     }
 
+    /**
+     *
+     * Remove first element in collection
+     */
     public boolean removeFirstElement() {
         Iterator<SpaceMarine> iterator = collection.iterator();
         if (iterator.hasNext()) {
@@ -122,16 +173,12 @@ public class CollectionManager {
             return false;
     }
 
-    // public void printMarineCollection() {
-
-    //    for (SpaceMarine spaceMarine : collection) {
-    //     ioManager.println(spaceMarine);
-    //    }
-    //  }
-
-
+    /**
+     *Find uniq health value
+     * @return Set of health value which exist in collection
+     * @throws IncorrectData
+     */
     public HashSet<Double> getUniqueHealth() throws IncorrectData {
-
 
         Iterator<SpaceMarine> iterator = collection.iterator();
         while (iterator.hasNext()) {
@@ -139,9 +186,14 @@ public class CollectionManager {
         }
         return healthCollection;
 
-
     }
 
+    /**
+     * Remove lower element in collection
+     * @param arguments
+     * @throws IncorrectData
+     * @throws EmptyElement
+     */
     public boolean removeLower(ArgumentLoader arguments) throws IncorrectData, EmptyElement {
 
         SpaceMarine spaceMarine = ((SpaceMarineArgumentLoader) arguments).loadSpaceMarin();
@@ -165,6 +217,11 @@ public class CollectionManager {
 
     }
 
+    /**
+     *
+     * @return Map with health value and Chapter instance
+     * @throws EmptyElement
+     */
     public TreeMap<Double, Chapter> printChapterFields() throws EmptyElement {
         if (collection.isEmpty()) throw new EmptyElement();
         TreeMap<Double, Chapter> chapterTreeMap = new TreeMap<>();
@@ -176,6 +233,11 @@ public class CollectionManager {
 
     }
 
+    /**
+     * Find element by id
+     * @param id
+     * @return
+     */
     public SpaceMarine findElementById(Long id) {
         for (SpaceMarine spaceMarine : collection) {
             if (id.equals(spaceMarine)) {
@@ -185,6 +247,9 @@ public class CollectionManager {
         return null;
     }
 
+    /**
+     * Load set id in collection which load from file
+     */
     public void startSetId() {
         for (SpaceMarine spaceMarine : collection) {
             id.add(spaceMarine.getId());

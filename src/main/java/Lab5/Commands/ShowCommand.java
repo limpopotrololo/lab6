@@ -7,7 +7,9 @@ import Lab5.Utility.ArgumentLoader;
 import Lab5.Utility.CollectionManager;
 import Lab5.Utility.IOManager;
 
-
+/**
+ * "show" command, show whole elements from collection
+ */
 public class ShowCommand extends Command {
 
     private final CollectionManager collectionManager;
@@ -18,6 +20,12 @@ public class ShowCommand extends Command {
         this.ioManager = ioManager;
     }
 
+    /**
+     * execute command
+     * @param arguments
+     * @throws EmptyElement
+     * @throws IncorrectData
+     */
 
     @Override
     public void run(ArgumentLoader arguments) throws EmptyElement, IncorrectData {

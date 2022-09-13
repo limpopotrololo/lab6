@@ -5,6 +5,9 @@ import Lab5.Utility.ArgumentLoader;
 import Lab5.Utility.CollectionManager;
 import Lab5.Utility.IOManager;
 
+/**
+ * "remove_lower" command, remove elements which lower than current
+ */
 public class RemoveLowerCommand extends Command {
     private final CollectionManager collectionManager;
     private final IOManager ioManager;
@@ -13,7 +16,6 @@ public class RemoveLowerCommand extends Command {
         this.collectionManager = collectionManager;
         this.ioManager = ioManager;
     }
-
     @Override
     public String getName() {
         return "remove_lower";

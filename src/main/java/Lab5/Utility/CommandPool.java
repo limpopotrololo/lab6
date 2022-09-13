@@ -1,15 +1,17 @@
 package Lab5.Utility;
 
 import Lab5.Commands.Command;
-
 import java.util.HashMap;
 
+/**
+ * Pool of commands
+ */
 public class CommandPool {
     private final HashMap<String, Command> commands = new HashMap<>();
 
     public Command get(String key) {
         if (!commands.containsKey(key))
-            throw new IllegalArgumentException("Incorrect command");
+            throw new IllegalArgumentException();
 
         return commands.get(key);
     }

@@ -12,6 +12,9 @@ import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.Stack;
 
+/**
+ * "execute" command, script execution
+ */
 public class ExecuteScriptCommand extends Command {
 
     private final IOManager ioManager;
@@ -25,9 +28,14 @@ public class ExecuteScriptCommand extends Command {
         this.consoleManager = consoleManager;
     }
 
+    /**
+     * execute command
+     * @param arguments
+     * @throws EmptyElement
+     * @throws IncorrectData
+     */
     @Override
     public void run(ArgumentLoader arguments) throws EmptyElement, IncorrectData {
-
         try {
             arguments.validateCount(1);
             String fileName = arguments.getStrArguments()[0];

@@ -7,6 +7,9 @@ import Lab5.Utility.IOManager;
 import Lab5.Utility.Serializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+/**
+ * "save" command, save whole collection in file (json format)
+ */
 public class SaveCommand extends Command {
     CollectionManager collectionManager;
     IOManager ioManager;
@@ -19,6 +22,12 @@ public class SaveCommand extends Command {
 
     }
 
+    /**
+     * execute command
+     * @param arguments
+     * @throws EmptyElement
+     * @throws IncorrectData
+     */
     @Override
     public void run(ArgumentLoader arguments) throws EmptyElement, IncorrectData {
         try {

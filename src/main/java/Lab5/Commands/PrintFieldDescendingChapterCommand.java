@@ -6,7 +6,9 @@ import Lab5.Utility.ArgumentLoader;
 import Lab5.Utility.CollectionManager;
 import Lab5.Utility.IOManager;
 
-
+/**
+ * "print_chapter" command,  Print descending chapter's fields
+ */
 public class PrintFieldDescendingChapterCommand extends Command {
     private final CollectionManager collectionManager;
     private final IOManager ioManager;
@@ -16,6 +18,12 @@ public class PrintFieldDescendingChapterCommand extends Command {
         this.ioManager = ioManager;
     }
 
+    /**
+     * execute command
+     * @param arguments
+     * @throws EmptyElement
+     * @throws IncorrectData
+     */
     @Override
     public void run(ArgumentLoader arguments) throws EmptyElement, IncorrectData {
         try {

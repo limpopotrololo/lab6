@@ -5,6 +5,9 @@ import Lab5.Utility.ArgumentLoader;
 import Lab5.Utility.CollectionManager;
 import Lab5.Utility.IOManager;
 
+/**
+ * "clear" command, clear whole collection
+ */
 public class ClearCommand extends Command {
     private final CollectionManager collectionManager;
     private final IOManager ioManager;
@@ -15,6 +18,12 @@ public class ClearCommand extends Command {
 
     }
 
+    /**
+     * execute command
+     * @param arguments
+     * @throws EmptyElement
+     * @throws IncorrectData
+     */
     @Override
     public void run(ArgumentLoader arguments) throws EmptyElement, IncorrectData {
         try {

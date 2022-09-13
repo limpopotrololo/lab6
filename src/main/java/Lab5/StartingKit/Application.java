@@ -12,7 +12,11 @@ import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
-import java.util.Stack;
+
+/** Main application class that loads all commands and initializes instances
+ * @author Ri Arkadiy
+ */
+
 
 public class Application extends AbstractApplication {
 
@@ -78,7 +82,7 @@ public class Application extends AbstractApplication {
             String input = new Scanner(System.in).nextLine();
             consoleManager.action(input);
         } catch (IllegalArgumentException | EmptyElement | IncorrectData e) {
-            ioManager.printerr("Happened some shit");
+            ioManager.printerr("Happened some shit"); //never throw
         }
 
     }

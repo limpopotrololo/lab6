@@ -2,9 +2,9 @@ package Lab5.StartingKit;
 
 import Lab5.Exeptions.*;
 
-import java.io.IOException;
-
-
+/**
+ * Abstract form for application's behavior
+ */
 public abstract class AbstractApplication {
     private static boolean state = false;
 
@@ -14,7 +14,7 @@ public abstract class AbstractApplication {
 
     }
 
-    public final void start() throws EmptyElement, IncorrectData{
+    public final void start() throws EmptyElement, IncorrectData {
         state = true;
         onStart();
         while (state) {

@@ -5,6 +5,9 @@ import Lab5.Exeptions.*;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ *  Main character
+ */
 public class SpaceMarine implements Comparable<SpaceMarine> {
 
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
@@ -48,38 +51,75 @@ public class SpaceMarine implements Comparable<SpaceMarine> {
         return chapter;
     }
 
+    /**
+     *
+     * @return melee weapon
+     */
     public MeleeWeapon getMeleeWeapon() {
         return meleeWeapon;
     }
 
+    /**
+     *
+     * @return id
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     *
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return coordinates
+     */
     public Coordinates getCoordinates() {
         return coordinates;
     }
 
+    /**
+     *
+     * @return creation date
+     */
     public Date getCreationDate() {
         return creationDate;
     }
 
+    /**
+     *
+     * @return health
+     */
     public double getHealth() {
         return health;
     }
 
+    /**
+     *
+     * @return achievements
+     */
     public String getAchievements() {
         return achievements;
     }
 
+    /**
+     *
+     * @return spacemarine category
+     */
     public AstartesCategory getCategory() {
         return category;
     }
 
+    /**
+     * set id
+     * @param id
+     * @throws IncorrectData
+     */
     public void setId(Long id) throws IncorrectData {
         if ((id == null) || (id <= 0)) {
             throw new IncorrectData();
@@ -87,6 +127,11 @@ public class SpaceMarine implements Comparable<SpaceMarine> {
         this.id = id;
     }
 
+    /**
+     * set name
+     * @param name
+     * @throws IncorrectData
+     */
     public void setName(String name) throws IncorrectData {
         if ((name == null) || (name.trim().equals(""))) {
             throw new IncorrectData();
@@ -94,6 +139,11 @@ public class SpaceMarine implements Comparable<SpaceMarine> {
         this.name = name;
     }
 
+    /**
+     * set coordinates
+     * @param coordinates
+     * @throws IncorrectData
+     */
     public void setCoordinates(Coordinates coordinates) throws IncorrectData {
         if (coordinates == null) {
             throw new IncorrectData();
@@ -101,6 +151,11 @@ public class SpaceMarine implements Comparable<SpaceMarine> {
         this.coordinates = coordinates;
     }
 
+    /**
+     * set creation date
+     * @param creationDate
+     * @throws IncorrectData
+     */
     public void setCreationDate(Date creationDate) throws IncorrectData {
         if (creationDate == null) {
             throw new IncorrectData();
@@ -108,6 +163,11 @@ public class SpaceMarine implements Comparable<SpaceMarine> {
         this.creationDate = creationDate;
     }
 
+    /**
+     * set health
+     * @param health
+     * @throws IncorrectData
+     */
     public void setHealth(double health) throws IncorrectData {
         if (health <= 0) {
             throw new IncorrectData();
@@ -115,6 +175,11 @@ public class SpaceMarine implements Comparable<SpaceMarine> {
         this.health = health;
     }
 
+    /**
+     * set achievements
+     * @param achievements
+     * @throws IncorrectData
+     */
     public void setAchievements(String achievements) throws IncorrectData {
         if (achievements == null) {
             throw new IncorrectData();
@@ -122,6 +187,11 @@ public class SpaceMarine implements Comparable<SpaceMarine> {
         this.achievements = achievements;
     }
 
+    /**
+     * set category
+     * @param category
+     * @throws IncorrectData
+     */
     public void setCategory(AstartesCategory category) throws IncorrectData {
         if (category == null) {
             throw new IncorrectData();
@@ -129,6 +199,11 @@ public class SpaceMarine implements Comparable<SpaceMarine> {
         this.category = category;
     }
 
+    /**
+     * set melee weapon
+     * @param meleeWeapon
+     * @throws IncorrectData
+     */
     public void setMeleeWeapon(MeleeWeapon meleeWeapon) throws IncorrectData {
         if (meleeWeapon == null) {
             throw new IncorrectData();
@@ -136,6 +211,11 @@ public class SpaceMarine implements Comparable<SpaceMarine> {
         this.meleeWeapon = meleeWeapon;
     }
 
+    /**
+     * set chapter
+     * @param chapter
+     * @throws IncorrectData
+     */
     public void setChapter(Chapter chapter) throws IncorrectData {
         if (chapter == null) {
             throw new IncorrectData();

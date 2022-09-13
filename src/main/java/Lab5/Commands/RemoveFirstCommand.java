@@ -6,6 +6,9 @@ import Lab5.Utility.ArgumentLoader;
 import Lab5.Utility.CollectionManager;
 import Lab5.Utility.IOManager;
 
+/**
+ * "remove_first" command, remove first element in collection
+ */
 public class RemoveFirstCommand extends Command {
     private final CollectionManager collectionManager;
     private final IOManager ioManager;
@@ -15,6 +18,12 @@ public class RemoveFirstCommand extends Command {
         this.ioManager = ioManager;
     }
 
+    /**
+     * execute command
+     * @param arguments
+     * @throws EmptyElement
+     * @throws IncorrectData
+     */
     @Override
     public void run(ArgumentLoader arguments) throws EmptyElement, IncorrectData {
         try {

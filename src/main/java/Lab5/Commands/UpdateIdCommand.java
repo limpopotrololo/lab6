@@ -7,6 +7,9 @@ import Lab5.Utility.CollectionManager;
 import Lab5.Utility.IOManager;
 import Lab5.Utility.SpaceMarineArgumentLoader;
 
+/**
+ * "update" command, update collection item by id
+ */
 public class UpdateIdCommand extends Command {
     CollectionManager collectionManager;
     IOManager ioManager;
@@ -16,6 +19,12 @@ public class UpdateIdCommand extends Command {
         this.ioManager = ioManager;
     }
 
+    /**
+     * execute command
+     * @param arguments
+     * @throws EmptyElement
+     * @throws IncorrectData
+     */
     @Override
     public void run(ArgumentLoader arguments) throws EmptyElement, IncorrectData {
         try {

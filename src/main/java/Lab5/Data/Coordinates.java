@@ -2,6 +2,9 @@ package Lab5.Data;
 
 import Lab5.Exeptions.*;
 
+/**
+ * Coordinates of SpaceMarine
+ */
 public class Coordinates {
 
     private Integer x; //can't be null
@@ -13,14 +16,27 @@ public class Coordinates {
     }
     public Coordinates(){}
 
+    /**
+     *
+     * @return x
+     */
     public Integer getX() {
         return x;
     }
 
+    /**
+     *
+     * @return y
+     */
     public Integer getY() {
         return y;
     }
 
+    /**
+     * set x
+     * @param x
+     * @throws IncorrectData
+     */
     public void setX(Integer x) throws IncorrectData {
         if (x == null) {
             throw new IncorrectData();
@@ -28,6 +44,10 @@ public class Coordinates {
         this.x = x;
     }
 
+    /**
+     * set y
+     * @param y
+     */
     public void setY(Integer y) {
         if ((y < -84) || (y == null)) {
             throw new IllegalArgumentException("Значение не подходит по ОДЗ");

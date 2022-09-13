@@ -5,6 +5,9 @@ import Lab5.Utility.ArgumentLoader;
 import Lab5.Utility.CollectionManager;
 import Lab5.Utility.IOManager;
 
+/**
+ * "print_unique_health" command, print uniq health values
+ */
 public class PrintUniqueHealthCommand extends Command {
     private final CollectionManager collectionManager;
     private final IOManager ioManager;
@@ -14,6 +17,12 @@ public class PrintUniqueHealthCommand extends Command {
         this.ioManager = ioManager;
     }
 
+    /**
+     * execute command
+     * @param arguments
+     * @throws EmptyElement
+     * @throws IncorrectData
+     */
     @Override
     public void run(ArgumentLoader arguments) throws EmptyElement, IncorrectData {
         try {

@@ -15,6 +15,9 @@ import java.util.Scanner;
 
 /** Main application class that loads all commands and initializes instances
  * @author Ri Arkadiy
+ * @throws IncorrectData never throws
+ * @throws IOException  when something with file went wrong
+ * @throws IncorrectData never throws
  */
 
 
@@ -27,22 +30,21 @@ public class Application extends AbstractApplication {
     IOManager ioManager = new IOManager(writer);
 
     Path path = Paths.get("src", "pars.txt");
+    //System.getenv(pars);
     File file = new File(String.valueOf(path));
     Serializer serializer = new Serializer(ioManager, file);
     CollectionManager collectionManager;
 
-    {
+
+
+    public Application() {
+        consoleManager = new ConsoleManager(commandPool, ioManager);
         try {
             collectionManager = new CollectionManager(serializer.collectionDeserializer());
         } catch (IOException e) {
             e.printStackTrace();
             ioManager.printerr("файла не существует или отсутствуют необходимые права");
         }
-    }
-
-
-    public Application() {
-        consoleManager = new ConsoleManager(commandPool, ioManager);
     }
 
     @Override

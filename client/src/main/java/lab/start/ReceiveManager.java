@@ -24,7 +24,6 @@ public class ReceiveManager {
         while (buf.position()==0) {
             addr = channel.receive(buf);
         }
-        //buf.flip();
         result = (CommandResult) messageSerializer.deserialize(buf.array());
         return  result;
     }

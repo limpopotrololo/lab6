@@ -4,6 +4,7 @@ import commands.Command;
 import commands.CommandResult;
 import exeptions.EmptyElement;
 import exeptions.IncorrectData;
+import lab.start.AbstractClient;
 import lab.start.Client;
 import lab.start.ReceiveManager;
 import lab.start.SendManager;
@@ -48,7 +49,7 @@ public class ConsoleManager {
         } catch (IllegalArgumentException e) {
             ioManager.printerr("Команда не найдена, воспользуйтесь командой \"help\" ");
         } catch (IOException e) {
-            ioManager.printerr("Какая-то хуйня с сервером");
+            ioManager.printerr("Проблемы с отправкой на сервер");
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace(); //never throw
@@ -57,7 +58,8 @@ public class ConsoleManager {
     private void checkCommand(Command command) {
         if (command.getName().equals("exit")){
             ioManager.println("_____Работа программы завершена_____");
-            Client.onStop();
+            AbstractClient.onStop();
+            System.exit(0);
         }
     }
 

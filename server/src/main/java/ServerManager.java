@@ -52,15 +52,13 @@ public class ServerManager {
                 continue;
             }
             result = execute(message);
-            if (Objects.equals(result,"error")) {
+            if (Objects.equals(result, "error")) {
                 sendManager.sendMessage(new CommandResult("error", "Что-то не так с данными", false), receiveManager.getPort(), receiveManager.getAddr());
             } else {
                 sendManager.sendMessage(result, receiveManager.getPort(), receiveManager.getAddr());
             }
             collectionManager.saveCollection();
         }
-
-
     }
 
     public CommandResult execute(Message mes) throws EmptyElement, IncorrectData {

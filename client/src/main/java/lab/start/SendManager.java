@@ -26,7 +26,6 @@ public class SendManager implements Serializable {
 
     public void sendMessage(Message message) throws IOException {
         arr = messageSerializer.serialize(message);
-        System.out.println(arr);
         buf = ByteBuffer.wrap(arr);
         client.send(buf, addr);
         buf.clear();

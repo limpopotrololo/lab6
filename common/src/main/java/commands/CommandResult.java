@@ -25,4 +25,8 @@ public class CommandResult implements Serializable {
                 ", status=" + status +
                 '}';
     }
+
+    public String getCommand() {
+        return command;
+    }
 }

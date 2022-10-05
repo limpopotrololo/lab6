@@ -2,10 +2,12 @@ package data;
 
 import exeptions.IncorrectData;
 
+import java.io.Serializable;
+
 /**
  * Coordinates of SpaceMarine
  */
-public class Coordinates {
+public class Coordinates implements Serializable {
 
     private Integer x; //can't be null
     private Integer y; //must be more -84 and can't be null

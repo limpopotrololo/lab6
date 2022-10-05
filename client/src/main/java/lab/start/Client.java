@@ -74,8 +74,8 @@ public class Client extends AbstractClient {
         commandPool.upload(new PrintUniqueHealthCommand());
         commandPool.upload(new RemoveLowerCommand());
         commandPool.upload(new PrintFieldDescendingChapterCommand());
+        commandPool.upload(new ExitCommand());
         // commandPool.upload(new ExecuteScriptCommand(collectionManager, ioManager, consoleManager));
-        // commandPool.upload(new SaveCommand(collectionManager, ioManager, serializer));
         commandPool.upload(new UpdateIdCommand());
     }
 

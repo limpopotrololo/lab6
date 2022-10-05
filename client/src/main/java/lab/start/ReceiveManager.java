@@ -25,8 +25,6 @@ public class ReceiveManager {
             addr = channel.receive(buf);
         }
         //buf.flip();
-        System.out.println(buf.position());
-        System.out.println(buf);
         result = (CommandResult) messageSerializer.deserialize(buf.array());
         return  result;
     }

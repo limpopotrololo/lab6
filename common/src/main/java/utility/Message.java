@@ -9,14 +9,15 @@ import java.io.Serializable;
 
 public class Message implements Serializable {
     private Command command;
+   // private Object data;
     private Object data;
     private SpaceMarine spaceMarine;
 
-    public void loadPreMessage(Command command, String[] argument) throws EmptyElement, IncorrectData {
+    public void loadPreMessage(Command command, SpaceMarineArgumentLoader argument) throws EmptyElement, IncorrectData {
         this.command = command;
-        data = argument;
+        data = argument.getStrArguments();
         if (command.getName().equals("add") || command.getName().equals("add_if_max") || command.getName().equals("update")) {
-            spaceMarine = ((SpaceMarineArgumentLoader) data).loadSpaceMarin();
+            spaceMarine = argument.loadSpaceMarin();
         }
 
     }

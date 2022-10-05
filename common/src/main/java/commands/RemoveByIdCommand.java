@@ -9,13 +9,16 @@ public class RemoveByIdCommand extends Command {
 
     @Override
     public CommandResult run(CollectionManager collectionManager, Object data, SpaceMarine item) throws EmptyElement, IncorrectData {
-            Long id = (Long)data;
+        try {
+            Long id = (Long) data;
             if (collectionManager.deleteElementById(id))
-                return new CommandResult("remove_by_id", "Объект удален",true);
+                return new CommandResult("remove_by_id", "Объект удален", true);
             else
-                return  new CommandResult("remove_by_id","Объекта с id = " + id + " не существует",false);
+                return new CommandResult("remove_by_id", "Объекта с id = " + id + " не существует", false);
 
-
+        } catch (ClassCastException e) {
+            return new CommandResult("error", null, null);
+        }
     }
 
 

@@ -1,5 +1,6 @@
 package utility;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import exeptions.IncorrectData;
 import commands.Command;
 import exeptions.EmptyElement;
@@ -19,9 +20,11 @@ public class CollectionManager {
     private final TreeSet<Long> id;
     private final HashSet<Double> healthCollection = new HashSet<>();
     private CommandPool commandPool = null;
+    private CollectionSerializer serializer;
 
 
-    public CollectionManager(CommandPool commandPool) {
+    public CollectionManager(CommandPool commandPool,CollectionSerializer serializer) {
+        this.serializer = serializer;
         collection = new Stack<SpaceMarine>();
         localDateTime = LocalDateTime.now();
         id = new TreeSet<>();
@@ -262,6 +265,10 @@ public class CollectionManager {
             id.add(spaceMarine.getId());
         }
 
+    }
+
+    public void saveCollection() throws JsonProcessingException {
+        serializer.collectionSerializer(collection);
     }
 
 

@@ -15,7 +15,7 @@ import java.util.Stack;
  * Class serialize and deserialize instances
  */
 public class CollectionSerializer {
-    private final IOManager ioManager;
+    private  IOManager ioManager;
 
     private File file;
     ObjectMapper mapper = new ObjectMapper();
@@ -23,6 +23,9 @@ public class CollectionSerializer {
     public CollectionSerializer(IOManager ioManager, File file) {
         this.ioManager = ioManager;
         this.file = file;
+    }
+
+    public CollectionSerializer(File file) {
     }
 
     /**
@@ -49,13 +52,12 @@ public class CollectionSerializer {
      */
     public void collectionSerializer(Stack<SpaceMarine> collection) throws JsonProcessingException {
         if (collection.isEmpty()) {
-            ioManager.println("Коллекция пуста");
+            return;
         } else {
 
             String jsonCollection = mapper.writeValueAsString(collection);
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
                 writer.write(jsonCollection);
-                ioManager.println("Коллекция сохранена");
             } catch (IOException e) {
                 e.printStackTrace();
             }

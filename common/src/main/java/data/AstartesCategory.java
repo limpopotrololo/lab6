@@ -1,10 +1,12 @@
 package data;
 
+import java.io.Serializable;
+
 /**
  * Enumeration with marine category constants.
  */
 
-public enum AstartesCategory {
+public enum AstartesCategory implements Serializable {
     DREADNOUGHT,
     ASSAULT,
     TACTICAL;

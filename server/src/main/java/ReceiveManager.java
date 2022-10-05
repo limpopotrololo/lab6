@@ -22,7 +22,7 @@ public class ReceiveManager {
     }
 
     public Message receiveMessage() throws IOException, ClassNotFoundException {
-        buf = new byte[906];
+        buf = new byte[10000];
         inputPacket = new DatagramPacket(buf, buf.length);
         client.receive(inputPacket);
         addr = inputPacket.getAddress();

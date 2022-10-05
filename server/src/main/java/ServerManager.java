@@ -4,6 +4,7 @@ import data.SpaceMarine;
 import exeptions.EmptyElement;
 import exeptions.IncorrectData;
 import utility.CollectionManager;
+import utility.CollectionSerializer;
 import utility.CommandPool;
 import utility.Message;
 
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.Objects;
 
 public class ServerManager {
     CollectionManager collectionManager;
@@ -21,43 +23,50 @@ public class ServerManager {
     SendManager sendManager;
     ReceiveManager receiveManager;
     Message message;
-    public ServerManager(CommandPool commandPool, InetAddress addr,Integer port) throws SocketException {
+    CollectionSerializer serializer;
+    CommandResult result;
+
+    public ServerManager(CommandPool commandPool, InetAddress addr, Integer port, CollectionSerializer serializer) {
         this.commandPool = commandPool;
         this.port = port;
         this.addr = addr;
+        this.serializer = serializer;
     }
 
-    public void run() throws EmptyElement, IncorrectData {
+    public void run() throws EmptyElement, IncorrectData, IOException, ClassNotFoundException {
 
+
+        DatagramSocket server = null;
         try {
-            DatagramSocket server = new DatagramSocket(port);
-            collectionManager = new CollectionManager(commandPool);
-            sendManager = new SendManager(server);
+            server = new DatagramSocket(port);
             receiveManager = new ReceiveManager(server);
-            CommandResult result;
-            while (serverState){
-                message = receiveManager.receiveMessage();
-                if (message.equals(null)){
-                    continue;
-                }
-                result = execute(message);
-                System.out.println(receiveManager.getPort());
-                System.out.println(receiveManager.getAddr());
-                sendManager.sendMessage(result,receiveManager.getPort(),receiveManager.getAddr());
+        } catch (SocketException e) {
+            serverState = false;
+        }
+        collectionManager = new CollectionManager(commandPool, serializer);
+        sendManager = new SendManager(server);
+
+        while (serverState) {
+            message = receiveManager.receiveMessage();
+            if (message.equals(null) || message.getCommand().getName().equals("exit")) {
+                continue;
             }
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("sosi huy bidlo");
-            e.printStackTrace();
+            result = execute(message);
+            if (Objects.equals(result,"error")) {
+                sendManager.sendMessage(new CommandResult("error", "Что-то не так с данными", false), receiveManager.getPort(), receiveManager.getAddr());
+            } else {
+                sendManager.sendMessage(result, receiveManager.getPort(), receiveManager.getAddr());
+            }
+            collectionManager.saveCollection();
         }
 
 
-
-
     }
+
     public CommandResult execute(Message mes) throws EmptyElement, IncorrectData {
         Command curCommand = mes.getCommand();
         Object data = mes.getData();
         SpaceMarine item = mes.getSpaceMarine();
-        return curCommand.run(collectionManager,data,item);
+        return curCommand.run(collectionManager, data, item);
     }
 }

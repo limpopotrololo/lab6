@@ -4,6 +4,7 @@ import commands.Command;
 import commands.CommandResult;
 import exeptions.EmptyElement;
 import exeptions.IncorrectData;
+import lab.start.Client;
 import lab.start.ReceiveManager;
 import lab.start.SendManager;
 import utility.CommandPool;
@@ -18,8 +19,8 @@ import java.io.IOException;
  */
 
 public class ConsoleManager {
-    utility.CommandPool commandPool;
-    utility.IOManager ioManager;
+    CommandPool commandPool;
+    IOManager ioManager;
     Message message = new Message();
     SendManager sendManager;
     ReceiveManager receiveManager;
@@ -34,28 +35,30 @@ public class ConsoleManager {
     public void action(String input) throws EmptyElement, IncorrectData {
         try {
             String[] splitingInput = input.split("\\s");
-            if (input.trim().isEmpty() || splitingInput.length>=2) throw new IllegalArgumentException();
+            if (input.trim().isEmpty() || splitingInput.length > 2) throw new IllegalArgumentException();
             Command curCommand = commandPool.get(splitingInput[0]);
             String[] arguments = new String[Math.max(0, splitingInput.length) - 1];
             System.arraycopy(splitingInput, 1, arguments, 0, arguments.length);
-            utility.SpaceMarineArgumentLoader argumentLoader = new SpaceMarineArgumentLoader(arguments, ioManager);
-            message.loadPreMessage(curCommand, splitingInput);
+            SpaceMarineArgumentLoader argumentLoader = new SpaceMarineArgumentLoader(arguments, ioManager);
+            message.loadPreMessage(curCommand, argumentLoader);
             sendManager.sendMessage(message);
-            CommandResult result =  receiveManager.receiveMessage();
+            checkCommand(curCommand);
+            CommandResult result = receiveManager.receiveMessage();
             System.out.println(result.getResult());
-
-
-            //curCommand.run(argumentLoader);
         } catch (IllegalArgumentException e) {
             ioManager.printerr("Команда не найдена, воспользуйтесь командой \"help\" ");
-        }catch (IOException e) {
+        } catch (IOException e) {
             ioManager.printerr("Какая-то хуйня с сервером");
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace(); //never throw
         }
-
-
+    }
+    private void checkCommand(Command command) {
+        if (command.getName().equals("exit")){
+            ioManager.println("_____Работа программы завершена_____");
+            Client.onStop();
+        }
     }
 
 

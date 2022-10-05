@@ -2,13 +2,14 @@ package data;
 
 import exeptions.IncorrectData;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 /**
  *  Main character
  */
-public class SpaceMarine implements Comparable<SpaceMarine> {
+public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {
 
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой

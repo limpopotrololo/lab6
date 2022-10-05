@@ -1,9 +1,11 @@
 package data;
 
+import java.io.Serializable;
+
 /**
  * MeleeWeapon constant
  */
-public enum MeleeWeapon {
+public enum MeleeWeapon implements Serializable {
     CHAIN_SWORD,
     POWER_SWORD,
     MANREAPER,

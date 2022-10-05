@@ -1,8 +1,8 @@
-import lab.commands.*;
-import lab.exeptions.EmptyElement;
-import lab.exeptions.IncorrectData;
-import lab.utility.CollectionManager;
-import lab.utility.CommandPool;
+import commands.*;
+import exeptions.EmptyElement;
+import exeptions.IncorrectData;
+import utility.CollectionManager;
+import utility.CommandPool;
 
 import java.net.*;
 import java.util.Objects;

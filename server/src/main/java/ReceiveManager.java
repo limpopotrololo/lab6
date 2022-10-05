@@ -1,5 +1,5 @@
 
-import lab.utility.Message;
+import utility.Message;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

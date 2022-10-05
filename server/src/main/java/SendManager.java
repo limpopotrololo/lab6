@@ -1,5 +1,4 @@
-import lab.commands.CommandResult;
-import lab.utility.Message;
+import commands.CommandResult;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -8,7 +7,6 @@ import java.io.Serializable;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.SocketAddress;
 
 public class SendManager {
     private DatagramSocket client;

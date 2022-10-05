@@ -1,15 +1,13 @@
-import lab.commands.Command;
-import lab.commands.CommandResult;
-import lab.data.SpaceMarine;
-import lab.exeptions.EmptyElement;
-import lab.exeptions.IncorrectData;
-import lab.utility.CollectionManager;
-import lab.utility.CommandPool;
-import lab.utility.Message;
-import lab.utility.SpaceMarineArgumentLoader;
+import commands.Command;
+import commands.CommandResult;
+import data.SpaceMarine;
+import exeptions.EmptyElement;
+import exeptions.IncorrectData;
+import utility.CollectionManager;
+import utility.CommandPool;
+import utility.Message;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;

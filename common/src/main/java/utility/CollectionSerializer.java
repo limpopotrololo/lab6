@@ -1,10 +1,9 @@
-package lab.utility;
+package utility;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import data.SpaceMarine;
-import utility.IOManager;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,13 +14,13 @@ import java.util.Stack;
 /**
  * Class serialize and deserialize instances
  */
-public class Serializer {
-    private final utility.IOManager ioManager;
+public class CollectionSerializer {
+    private final IOManager ioManager;
 
     private File file;
     ObjectMapper mapper = new ObjectMapper();
 
-    public Serializer(IOManager ioManager, File file) {
+    public CollectionSerializer(IOManager ioManager, File file) {
         this.ioManager = ioManager;
         this.file = file;
     }

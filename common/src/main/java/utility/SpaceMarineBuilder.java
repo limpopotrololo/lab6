@@ -1,9 +1,8 @@
-package lab.utility;
+package utility;
 
 import data.*;
 import exeptions.EmptyElement;
 import exeptions.IncorrectData;
-import utility.IOManager;
 
 import java.util.Scanner;
 
@@ -13,7 +12,7 @@ import java.util.Scanner;
 public class SpaceMarineBuilder {
 
 
-    utility.IOManager ioManager;
+    IOManager ioManager;
     private final SpaceMarine MarineItem = new SpaceMarine();
 
     public SpaceMarineBuilder(IOManager ioManager) {
@@ -23,7 +22,6 @@ public class SpaceMarineBuilder {
     /**
      * Set name
      * @throws IncorrectData
-     * @return
      */
     public SpaceMarineBuilder setName() throws IncorrectData {
         String name;
@@ -37,7 +35,6 @@ public class SpaceMarineBuilder {
      * Set Coordinates
      * @throws EmptyElement
      * @throws IncorrectData
-     * @return
      */
     public SpaceMarineBuilder setCoordinates() throws EmptyElement, IncorrectData {
         Coordinates coordinates;
@@ -93,7 +90,6 @@ public class SpaceMarineBuilder {
      * Set health
      * @throws EmptyElement
      * @throws IncorrectData
-     * @return
      */
     public SpaceMarineBuilder setHealth() throws EmptyElement, IncorrectData {
         String input;
@@ -116,7 +112,6 @@ public class SpaceMarineBuilder {
      * set Achievements
      * @throws EmptyElement
      * @throws IncorrectData
-     * @return
      */
     public SpaceMarineBuilder setAchievements() throws EmptyElement, IncorrectData {
 
@@ -137,7 +132,6 @@ public class SpaceMarineBuilder {
      * set Category
      * @throws EmptyElement
      * @throws IncorrectData
-     * @return
      */
     public SpaceMarineBuilder setCategory() throws EmptyElement, IncorrectData {
         AstartesCategory category;
@@ -160,7 +154,6 @@ public class SpaceMarineBuilder {
     /**
      * set MeleeWeapon
      * @throws IncorrectData
-     * @return
      */
     public SpaceMarineBuilder setMeleeWeapon() throws IncorrectData {
         MeleeWeapon meleeWeapon;
@@ -182,7 +175,6 @@ public class SpaceMarineBuilder {
     /**
      * set Chapter
      * @throws IncorrectData
-     * @return
      */
     public SpaceMarineBuilder setChapter() throws IncorrectData {
         Chapter chapter;

@@ -1,7 +1,7 @@
 package lab.start;
 
-import lab.utility.Message;
-import lab.utility.MessageSerializer;
+import utility.Message;
+import utility.MessageSerializer;
 
 import java.io.IOException;
 import java.io.Serializable;

@@ -1,11 +1,15 @@
 package lab.utility;
 
-import lab.commands.Command;
-
-import lab.commands.CommandResult;
-import lab.exeptions.*;
+import commands.Command;
+import commands.CommandResult;
+import exeptions.EmptyElement;
+import exeptions.IncorrectData;
 import lab.start.ReceiveManager;
 import lab.start.SendManager;
+import utility.CommandPool;
+import utility.IOManager;
+import utility.Message;
+import utility.SpaceMarineArgumentLoader;
 
 import java.io.IOException;
 
@@ -14,8 +18,8 @@ import java.io.IOException;
  */
 
 public class ConsoleManager {
-    CommandPool commandPool;
-    IOManager ioManager;
+    utility.CommandPool commandPool;
+    utility.IOManager ioManager;
     Message message = new Message();
     SendManager sendManager;
     ReceiveManager receiveManager;
@@ -34,7 +38,7 @@ public class ConsoleManager {
             Command curCommand = commandPool.get(splitingInput[0]);
             String[] arguments = new String[Math.max(0, splitingInput.length) - 1];
             System.arraycopy(splitingInput, 1, arguments, 0, arguments.length);
-            SpaceMarineArgumentLoader argumentLoader = new SpaceMarineArgumentLoader(arguments, ioManager);
+            utility.SpaceMarineArgumentLoader argumentLoader = new SpaceMarineArgumentLoader(arguments, ioManager);
             message.loadPreMessage(curCommand, splitingInput);
             sendManager.sendMessage(message);
             CommandResult result =  receiveManager.receiveMessage();

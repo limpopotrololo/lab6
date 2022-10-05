@@ -1,17 +1,15 @@
-package lab.utility;
+package utility;
 
 import data.SpaceMarine;
 import exeptions.EmptyElement;
 import exeptions.IncorrectData;
-import utility.ArgumentLoader;
-import utility.IOManager;
-import utility.SpaceMarineBuilder;
+
 
 /**
  * Argument loader for SpaceMarine
  */
 public class SpaceMarineArgumentLoader extends ArgumentLoader {
-    utility.IOManager ioManager;
+    IOManager ioManager;
 
     public SpaceMarineArgumentLoader(String[] arguments, IOManager ioManager) {
         super(arguments);

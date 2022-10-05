@@ -1,6 +1,7 @@
 package lab.start;
 
-import lab.exeptions.*;
+import exeptions.EmptyElement;
+import exeptions.IncorrectData;
 
 /**
  * Abstract form for application's behavior

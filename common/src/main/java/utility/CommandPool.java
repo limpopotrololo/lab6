@@ -1,4 +1,4 @@
-package lab.utility;
+package utility;
 
 import commands.Command;
 

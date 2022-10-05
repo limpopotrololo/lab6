@@ -1,9 +1,14 @@
 package lab.start;
 
 
-import lab.commands.*;
-import lab.exeptions.*;
-import lab.utility.*;
+import commands.*;
+import exeptions.EmptyElement;
+import exeptions.IncorrectData;
+import lab.utility.ConsoleManager;
+import utility.CollectionManager;
+import utility.CollectionSerializer;
+import utility.CommandPool;
+import utility.MessageSerializer;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,10 +33,10 @@ import java.util.Scanner;
 public class Client extends AbstractClient {
 
     private final static Integer DEFAULT_PORT = 4587;
-    CommandPool commandPool = new CommandPool();
+    utility.CommandPool commandPool = new CommandPool();
     ConsoleManager consoleManager;
     PrintWriter writer = new PrintWriter(System.out, true);
-    IOManager ioManager = new IOManager(writer);
+    utility.IOManager ioManager = new utility.IOManager(writer);
     MessageSerializer messageSerializer;
     CollectionSerializer collectionSerializer;
     CollectionManager collectionManager;

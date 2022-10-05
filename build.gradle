@@ -2,23 +2,30 @@ plugins {
     id 'java'
     id("com.github.johnrengelman.shadow") version "7.1.0"
 }
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+    group 'org.example'
+    version '1.0-SNAPSHOT'
 
-
-group 'org.example'
-version '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
 }
+subprojects {
+    apply plugin: 'java'
+    repositories {
+        mavenCentral()
+    }
+}
+
 
 dependencies {
    // testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
    // testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
+    implementation 'com.fasterxml:jackson-xml-databind:0.6.2'
 
 }
 
 test {
     useJUnitPlatform()
 }
-

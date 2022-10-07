@@ -1,9 +1,8 @@
-package lab.utility;
+package utility;
 
 import data.*;
 import exeptions.EmptyElement;
 import exeptions.IncorrectData;
-import utility.IOManager;
 
 import java.util.Scanner;
 
@@ -13,7 +12,7 @@ import java.util.Scanner;
 public class SpaceMarineBuilder {
 
 
-    utility.IOManager ioManager;
+    IOManager ioManager;
     private final SpaceMarine MarineItem = new SpaceMarine();
 
     public SpaceMarineBuilder(IOManager ioManager) {

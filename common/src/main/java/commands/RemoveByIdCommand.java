@@ -10,13 +10,14 @@ public class RemoveByIdCommand extends Command {
     @Override
     public CommandResult run(CollectionManager collectionManager, Object data, SpaceMarine item) throws EmptyElement, IncorrectData {
         try {
-            Long id = (Long) data;
+            String[] str = (String[]) data;
+            Long id = Long.parseLong(str[0]);
             if (collectionManager.deleteElementById(id))
                 return new CommandResult("remove_by_id", "Объект удален", true);
             else
                 return new CommandResult("remove_by_id", "Объекта с id = " + id + " не существует", false);
 
-        } catch (ClassCastException e) {
+        } catch (ClassCastException | ArrayIndexOutOfBoundsException  e) {
             return new CommandResult("error", null, null);
         }
     }

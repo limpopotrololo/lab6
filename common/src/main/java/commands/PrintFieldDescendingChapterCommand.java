@@ -25,7 +25,7 @@ public class PrintFieldDescendingChapterCommand extends Command {
         if (collectionManager.getSize() == 0)
             return new CommandResult("print_chapter", "Коллекция пуста", false);
 
-        for (Chapter chapter : collectionManager.printChapterFields().descendingMap().values())
+        for (Chapter chapter : collectionManager.printChapterFields())
             buf.append(chapter + "\n");
         return new CommandResult("print_chapter", buf, true);
     }

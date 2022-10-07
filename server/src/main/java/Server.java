@@ -35,6 +35,8 @@ public class Server {
         commandPool.upload(new PrintUniqueHealthCommand());
         commandPool.upload(new RemoveLowerCommand());
         commandPool.upload(new ExitCommand());
+        commandPool.upload(new UpdateIdCommand());
+        commandPool.upload(new PrintFieldDescendingChapterCommand());
         ServerManager serverManager = new ServerManager(commandPool,getHost(addr) ,PORT,serializer, collectionManager);
         serverManager.run();
     }

@@ -12,26 +12,32 @@ public class UpdateIdCommand extends Command {
 
     /**
      * execute command
+     *
+     * @return
      * @throws EmptyElement
      * @throws IncorrectData
-     * @return
      */
     @Override
     public CommandResult run(CollectionManager collectionManager, Object data, SpaceMarine newSpaceMarine) throws EmptyElement, IncorrectData {
-            if (data instanceof Number){
-                if (collectionManager.getSize() == 0)
-                    return new CommandResult("update", "коллекция пуста",false);
+
+        try {
+            String[] str = (String[]) data;
+            Long id = Long.parseLong(str[0]);
+            if (collectionManager.getSize() == 0)
+                return new CommandResult("update", "коллекция пуста", false);
+            else {
+                SpaceMarine findMarine = collectionManager.findElementById(id);
+                if (findMarine == null)
+                    return new CommandResult("update", "в коллекции нет элемента с данным id", false);
                 else {
-                    SpaceMarine findMarine = collectionManager.findElementById(((Number) data).longValue());
-                    if (findMarine == null)
-                        return new CommandResult("update", "в коллекции нет элемента с данным id",false);
-                    else {
-                        collectionManager.addMarine(newSpaceMarine);
-                        return new CommandResult("update", "____Элемент обновлен____",true);
-                    }
+                    collectionManager.addMarine(newSpaceMarine);
+                    return new CommandResult("update", "____Элемент обновлен____", true);
                 }
-            } else
-                return new CommandResult("update", "Неверный формат id",false);
+            }
+        }
+        catch (IllegalArgumentException e) {
+            return new CommandResult("update", "Неверный формат id", false);
+        }
     }
 
     @Override

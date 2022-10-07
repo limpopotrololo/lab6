@@ -9,6 +9,7 @@ import data.SpaceMarine;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Class for work with collection
@@ -23,7 +24,7 @@ public class CollectionManager {
     private CollectionSerializer serializer;
 
 
-    public CollectionManager(CommandPool commandPool,CollectionSerializer serializer, Stack<SpaceMarine> collection) {
+    public CollectionManager(CommandPool commandPool, CollectionSerializer serializer, Stack<SpaceMarine> collection) {
         this.serializer = serializer;
         this.collection = collection;
         localDateTime = LocalDateTime.now();
@@ -60,13 +61,14 @@ public class CollectionManager {
      * Add collection instance to collection
      *
      * @param spaceMarine
-     * @throws IncorrectData
      * @return
+     * @throws IncorrectData
      */
-    public HashMap<String, Command> getCommands(){
+    public HashMap<String, Command> getCommands() {
         return commandPool.getCommands();
 
     }
+
     public boolean addMarine(SpaceMarine spaceMarine) throws IncorrectData {
         if (Objects.equals(spaceMarine.getId(), null)) {
             if (id.isEmpty()) {
@@ -129,7 +131,8 @@ public class CollectionManager {
             addMarine(candidate);
             return true;
         }
-        if (Collections.max(collection).compareTo(candidate) < 0) {
+        SpaceMarine maxMarine = collection.stream().sorted().findFirst().get();
+        if (maxMarine.compareTo(candidate) < 0) {
             addMarine(candidate);
             return true;
         } else
@@ -146,10 +149,7 @@ public class CollectionManager {
         if (collection.isEmpty())
             return 0;
 
-        for (SpaceMarine spaceMarine : collection) {
-            sum += spaceMarine.getHealth();
-        }
-        return sum / collection.size();
+        return collection.stream().mapToDouble(s -> s.getHealth()).average().getAsDouble();
     }
 
     /**
@@ -162,8 +162,8 @@ public class CollectionManager {
 
     /**
      * Delete element with the give id
-     * @param id
      *
+     * @param id
      */
     public boolean deleteElementById(Long id) {
 
@@ -180,36 +180,32 @@ public class CollectionManager {
     }
 
     /**
-     *
      * Remove first element in collection
      */
     public boolean removeFirstElement() {
-        Iterator<SpaceMarine> iterator = collection.iterator();
-        if (iterator.hasNext()) {
-            iterator.next();
-            iterator.remove();
-            return true;
-        } else
+        if (collection.isEmpty())
             return false;
+        SpaceMarine firstMarine = collection.stream().sorted().findFirst().get();
+        collection.remove(firstMarine);
+        id.remove(firstMarine.getId());
+        return true;
     }
 
     /**
-     *Find uniq health value
+     * Find uniq health value
+     *
      * @return Set of health value which exist in collection
      * @throws IncorrectData
      */
-    public HashSet<Double> getUniqueHealth() throws IncorrectData {
+    public Set<Double> getUniqueHealth() {
 
-        Iterator<SpaceMarine> iterator = collection.iterator();
-        while (iterator.hasNext()) {
-            healthCollection.add(iterator.next().getHealth());
-        }
-        return healthCollection;
+        return collection.stream().map(s -> s.getHealth()).collect(Collectors.toSet());
 
     }
 
     /**
      * Remove lower element in collection
+     *
      * @throws IncorrectData
      * @throws EmptyElement
      */
@@ -236,34 +232,27 @@ public class CollectionManager {
     }
 
     /**
-     *
      * @return Map with health value and Chapter instance
      * @throws EmptyElement
      */
-    public TreeMap<Double, Chapter> printChapterFields() throws EmptyElement {
+    public List<Chapter> printChapterFields() throws EmptyElement {
         if (collection.isEmpty()) throw new EmptyElement();
-        TreeMap<Double, Chapter> chapterTreeMap = new TreeMap<>();
-        for (SpaceMarine spaceMarine : collection) {
-            chapterTreeMap.put(spaceMarine.getHealth(), spaceMarine.getChapter());
-        }
-        return chapterTreeMap;
+
+        return collection.stream().sorted((Comparator.reverseOrder())).map(s -> s.getChapter()).collect(Collectors.toList());
 
 
     }
 
     /**
      * Find element by id
+     *
      * @param id
      * @return
      */
     public SpaceMarine findElementById(Long id) {
-        for (SpaceMarine spaceMarine : collection) {
-            if (id.equals(spaceMarine)) {
-                return spaceMarine;
-            }
-        }
-        return null;
+        return collection.stream().filter((spMar) -> id.equals(spMar.getId())).findFirst().orElse(null);
     }
+
 
     /**
      * Load set id in collection which load from file

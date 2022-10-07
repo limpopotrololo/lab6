@@ -27,6 +27,7 @@ public class ConsoleManager {
     SendManager sendManager;
     ReceiveManager receiveManager;
 
+
     public ConsoleManager(CommandPool pool, IOManager ioManager, SendManager sendManager, ReceiveManager receiveManager) {
         commandPool = pool;
         this.ioManager = ioManager;

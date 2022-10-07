@@ -2,6 +2,7 @@ package lab.start;
 
 
 import commands.*;
+import data.SpaceMarine;
 import exeptions.EmptyElement;
 import exeptions.IncorrectData;
 import lab.utility.ConsoleManager;
@@ -19,6 +20,7 @@ import java.net.UnknownHostException;
 import java.nio.channels.DatagramChannel;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
  * Main application class that loads all commands and initializes instances
@@ -32,6 +34,7 @@ import java.util.Scanner;
 
 public class Client extends AbstractClient {
 
+    private final static Integer TIME_OUT = 1000;
     private final static Integer DEFAULT_PORT = 4587;
     utility.CommandPool commandPool = new CommandPool();
     ConsoleManager consoleManager;
@@ -88,7 +91,7 @@ public class Client extends AbstractClient {
         try {
             String input = new Scanner(System.in).nextLine();
             consoleManager.action(input);
-        } catch (IllegalArgumentException | EmptyElement | IncorrectData e) {
+        } catch (IllegalArgumentException | EmptyElement | IncorrectData | InterruptedException e) {
             ioManager.printerr("Happened some shit"); //never throw
         }
     }
@@ -103,7 +106,7 @@ public class Client extends AbstractClient {
 
     public void setCollectionManager(){
         try {
-            collectionManager = new CollectionManager(collectionSerializer.collectionDeserializer());
+            collectionManager = new CollectionManager(commandPool, collectionSerializer, collectionSerializer.collectionDeserializer());
         } catch (IOException e) {
             e.printStackTrace();
             ioManager.printerr("файла не существует или отсутствуют необходимые права");

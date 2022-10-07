@@ -4,9 +4,11 @@ import exeptions.IncorrectData;
 import utility.CollectionManager;
 import utility.CollectionSerializer;
 import utility.CommandPool;
+import utility.IOManager;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.*;
 import java.util.Objects;
 
@@ -16,10 +18,11 @@ public class Server {
     private static InetAddress addr;
 
     public static void main(String[] args) throws IOException, EmptyElement, IncorrectData, ClassNotFoundException {
-        File file = new File(getEnv("pars","parsPath"));
-        CollectionSerializer serializer = new CollectionSerializer(file);
+        IOManager ioManager = new IOManager();
+        File pfile = new File(getEnv("pars","parsPath"));
+        CollectionSerializer serializer = new CollectionSerializer(ioManager, pfile);
         CommandPool commandPool = new CommandPool();
-        CollectionManager collectionManager = new CollectionManager(commandPool,serializer);
+        CollectionManager collectionManager = new CollectionManager(commandPool,serializer,serializer.collectionDeserializer());
         commandPool.upload(new AddCommand());
         commandPool.upload(new HelpCommand());
         commandPool.upload(new InfoCommand());
@@ -32,7 +35,7 @@ public class Server {
         commandPool.upload(new PrintUniqueHealthCommand());
         commandPool.upload(new RemoveLowerCommand());
         commandPool.upload(new ExitCommand());
-        ServerManager serverManager = new ServerManager(commandPool,getHost(addr) ,PORT,serializer);
+        ServerManager serverManager = new ServerManager(commandPool,getHost(addr) ,PORT,serializer, collectionManager);
         serverManager.run();
     }
 

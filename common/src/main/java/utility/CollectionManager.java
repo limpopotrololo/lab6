@@ -23,20 +23,28 @@ public class CollectionManager {
     private CollectionSerializer serializer;
 
 
-    public CollectionManager(CommandPool commandPool,CollectionSerializer serializer) {
+    public CollectionManager(CommandPool commandPool,CollectionSerializer serializer, Stack<SpaceMarine> collection) {
         this.serializer = serializer;
-        collection = new Stack<SpaceMarine>();
+        this.collection = collection;
         localDateTime = LocalDateTime.now();
         id = new TreeSet<>();
         this.commandPool = commandPool;
     }
 
-    public CollectionManager(Stack<SpaceMarine> collection) {
+    public CollectionManager(CommandPool commandPool, CollectionSerializer serializer) {
+        this.commandPool = commandPool;
+        collection = new Stack<SpaceMarine>();
+        localDateTime = LocalDateTime.now();
+        id = new TreeSet<>();
+        this.serializer = serializer;
+    }
+
+   /* public CollectionManager() {
         this.collection = collection;
         localDateTime = LocalDateTime.now();
         id = new TreeSet<>();
     }
-
+*/
 
     /**
      * Load collection

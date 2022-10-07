@@ -7,12 +7,17 @@ import java.io.*;
  * Class for work with input and output
  */
 public class IOManager {
-    private final PrintWriter writer;
+    private PrintWriter writer;
 
 
     public IOManager(PrintWriter writer) {
         this.writer = writer;
     }
+
+    public IOManager() {
+
+    }
+
 
     /**
      * Print regular messages to console

@@ -26,11 +26,12 @@ public class ServerManager {
     CollectionSerializer serializer;
     CommandResult result;
 
-    public ServerManager(CommandPool commandPool, InetAddress addr, Integer port, CollectionSerializer serializer) {
+    public ServerManager(CommandPool commandPool, InetAddress addr, Integer port, CollectionSerializer serializer,CollectionManager collectionManager) {
         this.commandPool = commandPool;
         this.port = port;
         this.addr = addr;
         this.serializer = serializer;
+        this.collectionManager = collectionManager;
     }
 
     public void run() throws EmptyElement, IncorrectData, IOException, ClassNotFoundException {
@@ -43,7 +44,6 @@ public class ServerManager {
         } catch (SocketException e) {
             serverState = false;
         }
-        collectionManager = new CollectionManager(commandPool, serializer);
         sendManager = new SendManager(server);
 
         while (serverState) {

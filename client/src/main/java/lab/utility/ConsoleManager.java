@@ -14,6 +14,7 @@ import utility.Message;
 import utility.SpaceMarineArgumentLoader;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * Class for separating input and pick approach command
@@ -33,7 +34,7 @@ public class ConsoleManager {
         this.receiveManager = receiveManager;
     }
 
-    public void action(String input) throws EmptyElement, IncorrectData {
+    public void action(String input) throws EmptyElement, IncorrectData, InterruptedException {
         try {
             String[] splitingInput = input.split("\\s");
             if (input.trim().isEmpty() || splitingInput.length > 2) throw new IllegalArgumentException();
@@ -45,7 +46,7 @@ public class ConsoleManager {
             sendManager.sendMessage(message);
             checkCommand(curCommand);
             CommandResult result = receiveManager.receiveMessage();
-            System.out.println(result.getResult());
+            ioManager.println(result.getResult());
         } catch (IllegalArgumentException e) {
             ioManager.printerr("Команда не найдена, воспользуйтесь командой \"help\" ");
         } catch (IOException e) {

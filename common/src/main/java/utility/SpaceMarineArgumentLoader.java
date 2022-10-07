@@ -3,6 +3,7 @@ package utility;
 import data.SpaceMarine;
 import exeptions.EmptyElement;
 import exeptions.IncorrectData;
+import lab.utility.SpaceMarineBuilder;
 
 
 /**

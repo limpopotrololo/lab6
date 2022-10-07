@@ -5,7 +5,6 @@ import exeptions.EmptyElement;
 import exeptions.IncorrectData;
 import utility.ArgumentLoader;
 import utility.IOManager;
-import utility.SpaceMarineBuilder;
 
 /**
  * Argument loader for SpaceMarine

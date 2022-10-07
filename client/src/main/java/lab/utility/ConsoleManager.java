@@ -5,16 +5,13 @@ import commands.CommandResult;
 import exeptions.EmptyElement;
 import exeptions.IncorrectData;
 import lab.start.AbstractClient;
-import lab.start.Client;
 import lab.start.ReceiveManager;
 import lab.start.SendManager;
 import utility.CommandPool;
 import utility.IOManager;
 import utility.Message;
 import utility.SpaceMarineArgumentLoader;
-
 import java.io.IOException;
-import java.util.Objects;
 
 /**
  * Class for separating input and pick approach command
@@ -47,7 +44,11 @@ public class ConsoleManager {
             sendManager.sendMessage(message);
             checkCommand(curCommand);
             CommandResult result = receiveManager.receiveMessage();
+            if (result.getCommand().equals("error"))
+                ioManager.printerr(result.getResult());
+            else
             ioManager.println(result.getResult());
+
         } catch (IllegalArgumentException e) {
             ioManager.printerr("Команда не найдена, воспользуйтесь командой \"help\" ");
         } catch (IOException e) {

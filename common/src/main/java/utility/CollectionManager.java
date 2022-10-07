@@ -145,7 +145,6 @@ public class CollectionManager {
      * return double
      */
     public double getAverageHealth() {
-        double sum = 0;
         if (collection.isEmpty())
             return 0;
 

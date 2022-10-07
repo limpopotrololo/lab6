@@ -21,7 +21,6 @@ public class SendManager implements Serializable {
         this.client = channel;
         addr = serverAddr;
         this.messageSerializer = messageSerializer;
-
     }
 
     public void sendMessage(Message message) throws IOException {
